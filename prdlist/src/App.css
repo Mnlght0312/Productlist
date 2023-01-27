@@ -1,0 +1,58 @@
+/* Add some padding and margin to the container */
+.container {
+  padding: 16px;
+  margin: 16px;
+}
+
+/* Style the buttons */
+.btn {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+/* Style the form input */
+.form-control {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+/* Style the table */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Style the table header */
+th {
+  background-color: #f2f2f2;
+}
+
+/* Style the table cells when they are out of stock */
+.out-of-stock {
+  background-color: #ffcccb;
+}
+
+/* Style the search button */
+.search-btn {
+  background-color: #ddd;
+  color: black;
+}
