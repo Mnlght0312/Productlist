@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Container, Row, Col, Form, Input, Button, Table } from "reactstrap";
 import { useEffect } from "react";
 import "./App.css";
+import _ from "underscore";
+
 
 const products = [
   {
@@ -54,6 +56,9 @@ function ProductList() {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
   const [selectedProducts, setSelectedProducts] = useState([]);
+  const groupedProducts = _.groupBy(filteredProducts, 'category');
+
+  
 
   useEffect(() => {
     let filtered = [...products];
@@ -113,33 +118,40 @@ function ProductList() {
       <Row>
         <Col>
           <Table>
-            <thead>
-              <tr>
-                <th>Category</th>
-                <th>Name</th>
-                <th>In Stock</th>
-                <th>Price</th>
-                <th>Select</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredProducts.map((product) => (
-                <tr key={product.name}>
-                  <td>{product.category}</td>
-                  <td>{product.name}</td>
-                  <td style={{ color: product.inStock ? "green" : "red" }}>
-                    {product.inStock ? "In Stock" : "Out of Stock"}
-                  </td>
-                  <td>${product.price}</td>
-                  <td>
-                    <input
-                      type="checkbox"
-                      onChange={() => handleProductSelect(product)}
-                    />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+          <div className="grouped-products">
+          {Object.entries(groupedProducts).map(([category, products]) => (
+  <>
+    <h3>{category}</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>In Stock</th>
+          <th>Price</th>
+          <th>Select price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {products.map((product) => (
+          <tr key={product.name}>
+            <td>{product.name}</td>
+            <td style={{ color: product.inStock ? "green" : "red" }}>
+              {product.inStock ? "In Stock" : "Out of Stock"}
+            </td>
+            <td>${product.price}</td>
+            <td>
+              <input
+                type="checkbox"
+                onChange={() => handleProductSelect(product)}
+              />
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </>
+))}
+</div>
           </Table>
         </Col>
       </Row>
